@@ -216,15 +216,3 @@ WARNING  : 35 ≤ score < 60
 DANGER   : score ≥ 60
 ```
 
----
-
-## 👥 Team Members
-
-| Name | Roll Number |
-|------|-------------|
-| G Sai Charan Reddy | CS23B1023 |
-| Darshan Gowda DS | AD23B1015 |
-
-## 📄 License
-
-For academic use only.
