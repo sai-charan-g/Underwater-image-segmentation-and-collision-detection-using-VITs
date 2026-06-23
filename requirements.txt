@@ -3,8 +3,11 @@ scikit-image
 scikit-learn
 pandas
 matplotlib
-opencv-python
+opencv-python-headless
 tqdm
 scipy
 pillow
 albumentations
+streamlit
+torch
+torchvision

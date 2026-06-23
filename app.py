@@ -34,6 +34,19 @@ MODEL_PATH = os.path.join(BASE_DIR, "outputs", "best_model_multiclass.pth")
 # ── Check if trained model exists ──
 HAS_MODEL = os.path.exists(MODEL_PATH)
 
+def download_model_weights(url):
+    """Download model weights from a direct link."""
+    import urllib.request
+    try:
+        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        with st.spinner("Downloading model weights from URL... This might take a moment."):
+            urllib.request.urlretrieve(url, MODEL_PATH)
+        st.success("Download complete!")
+        return True
+    except Exception as e:
+        st.error(f"Failed to download weights: {e}")
+        return False
+
 # ── Colour palette for display (RGB for streamlit) ──
 CLASS_COLORS_RGB = [SUIM_CLASSES[i]["rgb"] for i in range(NUM_CLASSES)]
 
@@ -211,7 +224,43 @@ with st.sidebar:
     if HAS_MODEL:
         st.success("✅ Trained model found")
     else:
-        st.info("ℹ️ No trained model — using ground truth masks for demo")
+        st.warning("⚠️ Model weights not found.")
+        
+        # 1. File Uploader for Model Weights
+        uploaded_weights = st.file_uploader(
+            "Upload model weights (.pth)", 
+            type=["pth"], 
+            key="model_uploader",
+            help="Upload the trained 'best_model_multiclass.pth' file (up to 200MB)."
+        )
+        if uploaded_weights is not None:
+            os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+            with open(MODEL_PATH, "wb") as f:
+                f.write(uploaded_weights.getbuffer())
+            st.success("Model weights uploaded successfully! Reloading...")
+            try:
+                st.rerun()
+            except AttributeError:
+                st.experimental_rerun()
+        
+        st.markdown("**OR**")
+        
+        # 2. Text Input for Direct URL Download
+        weights_url = st.text_input(
+            "Paste direct download URL:", 
+            placeholder="https://example.com/best_model_multiclass.pth",
+            key="model_url_input"
+        )
+        if st.button("Download Weights", key="download_weights_btn"):
+            if weights_url:
+                if download_model_weights(weights_url):
+                    st.success("Weights downloaded successfully! Reloading...")
+                    try:
+                        st.rerun()
+                    except AttributeError:
+                        st.experimental_rerun()
+            else:
+                st.warning("Please enter a URL first.")
 
 # ─────────────────────────────────────────────────────────
 # MAIN CONTENT
