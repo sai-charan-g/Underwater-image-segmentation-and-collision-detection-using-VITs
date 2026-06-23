@@ -1,8 +1,3 @@
-# ============================================================
-# app.py — Interactive Underwater Segmentation + Collision Alert
-# Run: streamlit run app.py
-# ============================================================
-
 import os
 import cv2
 import numpy as np

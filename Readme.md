@@ -222,9 +222,7 @@ DANGER   : score ≥ 60
 
 | Name | Roll Number |
 |------|-------------|
-| K V Jaya Harsha | CS23B1034 |
 | G Sai Charan Reddy | CS23B1023 |
-| Y Santhosh | AD23B1060 |
 | Darshan Gowda DS | AD23B1015 |
 
 ## 📄 License
