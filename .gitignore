@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local environments
+.venv/
+env/
+venv/
+
+# Large Datasets
+data/
+TEST/
+
+# Model Weights
+*.pth
+*.pt
+*.onnx
+
+# Generated predictions/outputs (keep presentation results)
+outputs/predictions/
+outputs/*.pth
+
+# OS generated files
+.DS_Store
+Thumbs.db

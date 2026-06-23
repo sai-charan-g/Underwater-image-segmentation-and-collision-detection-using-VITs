@@ -1,0 +1,10 @@
+timm==0.9.2
+scikit-image
+scikit-learn
+pandas
+matplotlib
+opencv-python
+tqdm
+scipy
+pillow
+albumentations
