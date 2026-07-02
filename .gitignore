@@ -15,6 +15,7 @@ TEST/
 *.pth
 *.pt
 *.onnx
+*.bat
 
 # Generated predictions/outputs (keep presentation results)
 outputs/predictions/
